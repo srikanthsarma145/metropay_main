@@ -248,7 +248,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-//                      SizedBox(height: 30.0),
+                      SizedBox(height: 30.0),
                       _buildEmailTF(),
                       SizedBox(
                         height: 30.0,

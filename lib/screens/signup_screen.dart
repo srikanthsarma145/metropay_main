@@ -232,7 +232,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       _buildPasswordTF(),
                       SizedBox(height: 25.0),
                       _buildConfirmPasswordTF(),
-//                      SizedBox(height: 5.0),
+                      SizedBox(height: 5.0),
                       _buildSignupBtn(),
                     ],
                   ),

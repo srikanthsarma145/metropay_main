@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
           buttonTheme: ButtonThemeData(
             buttonColor: Color(0xff404040),
           ),
-//          cardTheme: CardTheme(
-//            color: Color(0xff404040),
-//          )
+          cardTheme: CardTheme(
+            color: Color(0xff404040),
+          )
       ),
 //      debugShowCheckedModeBanner: false, //remove comment to remove debug tag
       home: LoginScreen(),
