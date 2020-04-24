@@ -134,7 +134,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         ),
                         textAlign: TextAlign.justify,
                       ),
-                      SizedBox(height: 10.0),
+//                      SizedBox(height: 10.0),
                       _buildSendEmailBtn(),
                     ],
                   ),
