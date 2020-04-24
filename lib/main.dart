@@ -12,14 +12,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 //          canvasColor: Color(0xffffffff),
           buttonTheme: ButtonThemeData(
-            buttonColor: Color(0xffffffff),
-          )
+            buttonColor: Color(0xfffefefe),
+          ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-          canvasColor: Color(0xffffffff),
+          canvasColor: Color(0xffcccccc),
           buttonTheme: ButtonThemeData(
-            buttonColor: Color(0xff444444),
+            buttonColor: Color(0xff404040),
+          ),
+          cardTheme: CardTheme(
+            color: Color(0xff404040),
           )
       ),
 //      debugShowCheckedModeBanner: false, //remove comment to remove debug tag

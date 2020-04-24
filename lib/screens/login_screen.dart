@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 60.0,
           child: TextField(
             controller: usernameController,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.alternate_email,
                 color: Colors.white,
               ),
               hintText: 'Enter your Email',
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.lock,
+                Icons.vpn_key,
                 color: Colors.white,
               ),
               hintText: 'Enter your Password',

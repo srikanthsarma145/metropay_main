@@ -68,7 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.alternate_email,
                 color: Colors.white,
               ),
               hintText: 'Enter your Email',
@@ -103,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.lock,
+                Icons.vpn_key,
                 color: Colors.white,
               ),
               hintText: 'Enter your Password',
@@ -138,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.lock,
+                Icons.vpn_key,
                 color: Colors.white,
               ),
               hintText: 'Confirm your Password',

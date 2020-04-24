@@ -33,7 +33,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.email,
+                Icons.alternate_email,
                 color: Colors.white,
               ),
               hintText: 'Enter your Mobile number',
