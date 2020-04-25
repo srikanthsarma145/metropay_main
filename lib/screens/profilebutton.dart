@@ -10,27 +10,52 @@ class ProfileButton extends StatefulWidget {
 }
 
 class _ProfileButtonState extends State<ProfileButton> {
-  var username = 'Username';
   var fullName = 'fullName';
   var mobile = 9876543210;
   var emailId = 'example@123.com';
 
   Widget _userDetails() {
     return Card(
-      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
+      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              username,
-              style: TextStyle(
-                fontSize: 20.0,
-                letterSpacing: 0.8,
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'User Details',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    letterSpacing: 0.8,
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // SizedBox(width: 50.0),
+                ButtonTheme(
+                    minWidth: 10.0,
+                    child: FlatButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    // elevation: 4.0,
+                    onPressed: () {
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditDetailsButton()),
+                      );
+                    },
+                  // padding: EdgeInsets.all(0.0),
+                  //  color: Colors.white,
+                    child: Icon(
+                      Icons.edit,
+                      size: 20.0,
+                    )
+                    // color: Colors.black,)
+                  ),
+                ),
+              ],         
             ),
             SizedBox(height: 10.0),
             Container(height: 4, color: Color(0xFF61A4F1),
@@ -66,37 +91,6 @@ class _ProfileButtonState extends State<ProfileButton> {
 //        color: Colors.white,
         child: Text(
           'Logout',
-          style: TextStyle(
-//            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _editDetailsBtn() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 4.0,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => EditDetailsButton()),
-          );
-        },
-        padding: EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-//        color: Colors.white,
-        child: Text(
-          'Edit details',
           style: TextStyle(
 //            color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -148,7 +142,7 @@ class _ProfileButtonState extends State<ProfileButton> {
           child: Stack(
             children: <Widget>[
               Container(
-//                height: double.infinity,
+               height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -186,7 +180,6 @@ class _ProfileButtonState extends State<ProfileButton> {
                       ),
                       SizedBox(height: 30.0),
                       _userDetails(),
-                      _editDetailsBtn(),
 //                      SizedBox(height: 10.0),
                     _logoutBtn(),
                     ],
