@@ -13,7 +13,7 @@ class _MapButtonState extends State<MapButton> {
     return Card(
       margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
