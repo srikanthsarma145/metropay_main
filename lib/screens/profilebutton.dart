@@ -47,7 +47,7 @@ class _ProfileButtonState extends State<ProfileButton> {
                       );
                     },
                    padding: EdgeInsets.all(0.0),
-                  //  color: Colors.white,
+                    color: Colors.white,
                     child: Icon(
                       Icons.edit,
                       size: 20.0,
