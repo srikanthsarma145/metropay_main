@@ -18,7 +18,7 @@ class _ProfileButtonState extends State<ProfileButton> {
     return Card(
       margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -47,7 +47,7 @@ class _ProfileButtonState extends State<ProfileButton> {
                       );
                     },
                    padding: EdgeInsets.all(0.0),
-                    color: Colors.white,
+                    // color: Colors.white,
                     child: Icon(
                       Icons.edit,
                       size: 20.0,

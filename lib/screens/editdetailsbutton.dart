@@ -17,7 +17,7 @@ class _EditDetailsButtonState extends State<EditDetailsButton> {
     return Card(
       margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -33,7 +33,7 @@ class _EditDetailsButtonState extends State<EditDetailsButton> {
             SizedBox(height: 10.0),
             Container(height: 4, color: Color(0xFF61A4F1),
               margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
-            SizedBox(height: 15.0),
+            // SizedBox(height: 15.0),
             new TextFormField(
               decoration: new InputDecoration(
                   hintText: fullName, fillColor: Colors.white),

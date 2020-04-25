@@ -7,13 +7,15 @@ class WalletButton extends StatefulWidget {
 }
 
 class _WalletButtonState extends State<WalletButton> {
+  
+  var balanceAmount = 0.0;
 
   Widget _metroPayAmount() {
-    const balanceAmount = 0.0;
+    // const balanceAmount = 0.0;
     return Card(
       margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -50,6 +52,7 @@ class _WalletButtonState extends State<WalletButton> {
       child: RaisedButton(
         elevation: 4.0,
         onPressed: () {
+          balanceAmount = balanceAmount+100;
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
