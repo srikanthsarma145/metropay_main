@@ -46,7 +46,7 @@ class _ProfileButtonState extends State<ProfileButton> {
                         MaterialPageRoute(builder: (context) => EditDetailsButton()),
                       );
                     },
-                  // padding: EdgeInsets.all(0.0),
+                   padding: EdgeInsets.all(0.0),
                   //  color: Colors.white,
                     child: Icon(
                       Icons.edit,
