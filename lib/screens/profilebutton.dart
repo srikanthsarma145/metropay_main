@@ -86,7 +86,7 @@ class _ProfileButtonState extends State<ProfileButton> {
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(5.0),
         ),
 //        color: Colors.white,
         child: Text(

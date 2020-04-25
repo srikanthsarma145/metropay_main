@@ -46,7 +46,7 @@ class _HomeButtonState extends State<HomeButton> {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(5.0),
         ),
 //        color: Colors.white,
         child: Text(
@@ -78,7 +78,7 @@ class _HomeButtonState extends State<HomeButton> {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(5.0),
         ),
 
 //        color: Colors.white,

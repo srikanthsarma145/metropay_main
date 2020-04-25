@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
 //        color: Colors.white,
         child: Text(
