@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:metropay/utilities/constants.dart';
+import './confirmOTP.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -45,40 +46,40 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildEmailTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.alternate_email,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Email',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+//  Widget _buildEmailTF() {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          'Email',
+//          style: kLabelStyle,
+//        ),
+//        SizedBox(height: 10.0),
+//        Container(
+//          alignment: Alignment.centerLeft,
+//          decoration: kBoxDecorationStyle,
+//          height: 60.0,
+//          child: TextField(
+//            keyboardType: TextInputType.emailAddress,
+//            style: TextStyle(
+//              color: Colors.white,
+//              fontFamily: 'OpenSans',
+//            ),
+//            decoration: InputDecoration(
+//              border: InputBorder.none,
+//              contentPadding: EdgeInsets.only(top: 14.0),
+//              prefixIcon: Icon(
+//                Icons.alternate_email,
+//                color: Colors.white,
+//              ),
+//              hintText: 'Enter your Email',
+//              hintStyle: kHintTextStyle,
+//            ),
+//          ),
+//        ),
+//      ],
+//    );
+//  }
 
   Widget _buildMobileNumberTF() {
     return Column(
@@ -115,75 +116,75 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-//  Widget _buildPasswordTF() {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          'Password',
-//          style: kLabelStyle,
-//        ),
-//        SizedBox(height: 10.0),
-//        Container(
-//          alignment: Alignment.centerLeft,
-//          decoration: kBoxDecorationStyle,
-//          height: 60.0,
-//          child: TextField(
-//            obscureText: true,
-//            style: TextStyle(
-//              color: Colors.white,
-//              fontFamily: 'OpenSans',
-//            ),
-//            decoration: InputDecoration(
-//              border: InputBorder.none,
-//              contentPadding: EdgeInsets.only(top: 14.0),
-//              prefixIcon: Icon(
-//                Icons.vpn_key,
-//                color: Colors.white,
-//              ),
-//              hintText: 'Enter your Password',
-//              hintStyle: kHintTextStyle,
-//            ),
-//          ),
-//        ),
-//      ],
-//    );
-//  }
+  Widget _buildPasswordTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Password',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            obscureText: true,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.vpn_key,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your Password',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
-//  Widget _buildConfirmPasswordTF() {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          'Confirm Password',
-//          style: kLabelStyle,
-//        ),
-//        SizedBox(height: 10.0),
-//        Container(
-//          alignment: Alignment.centerLeft,
-//          decoration: kBoxDecorationStyle,
-//          height: 60.0,
-//          child: TextField(
-//            obscureText: true,
-//            style: TextStyle(
-//              color: Colors.white,
-//              fontFamily: 'OpenSans',
-//            ),
-//            decoration: InputDecoration(
-//              border: InputBorder.none,
-//              contentPadding: EdgeInsets.only(top: 14.0),
-//              prefixIcon: Icon(
-//                Icons.vpn_key,
-//                color: Colors.white,
-//              ),
-//              hintText: 'Confirm your Password',
-//              hintStyle: kHintTextStyle,
-//            ),
-//          ),
-//        ),
-//      ],
-//    );
-//  }
+  Widget _buildConfirmPasswordTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Confirm Password',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            obscureText: true,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.vpn_key,
+                color: Colors.white,
+              ),
+              hintText: 'Confirm your Password',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildSignupBtn() {
     return Container(
@@ -192,7 +193,10 @@ class _SignupScreenState extends State<SignupScreen> {
       child: RaisedButton(
         elevation: 4.0,
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ConfirmOTP()),
+            );
           },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -245,7 +249,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
-                    vertical: 140.0,
+                    vertical: 90.0,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -261,14 +265,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       SizedBox(height: 25.0),
                       _buildNameTF(),
-                      SizedBox(height: 25.0),
-                      _buildEmailTF(),
+//                      SizedBox(height: 25.0),
+//                      _buildEmailTF(),
                       SizedBox(height: 25.0),
                       _buildMobileNumberTF(),
-//                      SizedBox(height: 25.0),
-//                      _buildPasswordTF(),
-//                      SizedBox(height: 25.0),
-//                      _buildConfirmPasswordTF(),
+                      SizedBox(height: 25.0),
+                      _buildPasswordTF(),
+                      SizedBox(height: 25.0),
+                      _buildConfirmPasswordTF(),
                       SizedBox(height: 5.0),
                       _buildSignupBtn(),
                     ],

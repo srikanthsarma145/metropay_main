@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  var userName = '123';
+  var userName = '123' ;
   var passWord = '123';
 
 //  @override
@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 4.0,
         onPressed: () {
 
-          if ((usernameController.text == userName) && (passwordController.text == passWord)) {
+          if ((usernameController.text == userName.toString()) && (passwordController.text == passWord)) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomeScreen(/*userId: userName,*/)),
@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Toast.show("Enter Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
           }
           else{
-            Toast.show("Invalid Username or Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+            Toast.show("Incorrect Username or Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
           }
         },
         padding: EdgeInsets.all(15.0),

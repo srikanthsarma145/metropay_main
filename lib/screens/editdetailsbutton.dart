@@ -45,7 +45,7 @@ class _EditDetailsButtonState extends State<EditDetailsButton> {
             new TextFormField(
               decoration: new InputDecoration(
                   hintText: mobile.toString(), fillColor: Colors.white),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.phone,
             ),
             new TextFormField(
               decoration: new InputDecoration(

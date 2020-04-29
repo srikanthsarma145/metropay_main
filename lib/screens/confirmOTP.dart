@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:metropay/utilities/constants.dart';
-import 'package:toast/toast.dart';
 
-class ForgetScreen extends StatefulWidget {
+class ConfirmOTP extends StatefulWidget {
   @override
-  _ForgetScreenState createState() => _ForgetScreenState();
+  _ConfirmOTPState createState() => _ConfirmOTPState();
 }
 
-class _ForgetScreenState extends State<ForgetScreen> {
+class _ConfirmOTPState extends State<ConfirmOTP> {
 
-  Widget _buildMobileNumberTF() {
+   Widget _buildOTPTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Mobile number',
+          'OTP',
           style: kLabelStyle,
         ),
         SizedBox(height: 10.0),
@@ -24,7 +24,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            keyboardType: TextInputType.phone,
+            keyboardType: TextInputType.number,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -36,7 +36,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                 Icons.phone,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Mobile number',
+              hintText: 'Enter your OTP',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -45,7 +45,8 @@ class _ForgetScreenState extends State<ForgetScreen> {
     );
   }
 
-  Widget _buildSendSMSBtn() {
+
+  Widget _buildConfirmOTPBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -53,7 +54,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
         elevation: 4.0,
         onPressed: () {
           Navigator.pop(context);
-          Toast.show("SMS Sent", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+          Navigator.pop(context);
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -61,7 +62,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
         ),
 //        color: Colors.white,
         child: Text(
-          'Send SMS',
+          'Confirm OTP',
           style: TextStyle(
 //            color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -84,7 +85,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
           child: Stack(
             children: <Widget>[
               Container(
-                height: double.infinity,
+//                height: double.infinity,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -120,11 +121,11 @@ class _ForgetScreenState extends State<ForgetScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 30.0),
-                      _buildMobileNumberTF(),
+                      SizedBox(height: 25.0),
+                      _buildOTPTF(),
                       SizedBox(height: 20.0),
                       Text(
-                        'Note: Enter your mobile number in the above text field, the username and password linked to the provided number will be sent to it.',
+                        'Note: Enter OTP sent to the mobile number provided.',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'OpenSans',
@@ -132,10 +133,13 @@ class _ForgetScreenState extends State<ForgetScreen> {
                           fontWeight: FontWeight.bold,
 
                         ),
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.start,
                       ),
-                      SizedBox(height: 10.0),
-                      _buildSendSMSBtn(),
+//                      _buildPasswordTF(),
+//                      SizedBox(height: 25.0),
+//                      _buildConfirmPasswordTF(),
+                      SizedBox(height: 5.0),
+                      _buildConfirmOTPBtn(),
                     ],
                   ),
                 ),

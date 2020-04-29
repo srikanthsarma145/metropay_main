@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import './addMoneybutton.dart';
 
 class WalletButton extends StatefulWidget {
   @override
@@ -51,9 +52,13 @@ class _WalletButtonState extends State<WalletButton> {
       child: RaisedButton(
         elevation: 4.0,
         onPressed: () {
-          balanceAmount=balanceAmount+100;
-          setState(() {
-          });
+//          balanceAmount=balanceAmount+100;
+//          setState(() {
+//          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddMoneyButton()),
+          );
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
