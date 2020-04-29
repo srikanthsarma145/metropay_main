@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  var userName = 'abc';
+  var userName = '123';
   var passWord = '123';
 
 //  @override
@@ -29,12 +29,12 @@ class _LoginScreenState extends State<LoginScreen> {
 //    super.dispose();
 //  }
 
-  Widget _buildEmailTF() {
+  Widget _buildMobileNumTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Email',
+          'Mobile Number',
           style: kLabelStyle,
         ),
         SizedBox(height: 10.0),
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 60.0,
           child: TextField(
             controller: usernameController,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.phone,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -53,10 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.alternate_email,
+                Icons.phone,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Email',
+              hintText: 'Enter your Mobile Number',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -249,7 +249,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
-                      _buildEmailTF(),
+                      _buildMobileNumTF(),
                       SizedBox(
                         height: 30.0,
                       ),

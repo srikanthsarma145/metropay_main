@@ -10,7 +10,7 @@ class ForgetScreen extends StatefulWidget {
 
 class _ForgetScreenState extends State<ForgetScreen> {
 
-  Widget _buildEmailTF() {
+  Widget _buildMobileNumberTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -24,7 +24,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.phone,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -33,7 +33,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.alternate_email,
+                Icons.phone,
                 color: Colors.white,
               ),
               hintText: 'Enter your Mobile number',
@@ -45,7 +45,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
     );
   }
 
-  Widget _buildSendEmailBtn() {
+  Widget _buildSendSMSBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -121,7 +121,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
-                      _buildEmailTF(),
+                      _buildMobileNumberTF(),
                       SizedBox(height: 40.0),
                       Text(
                         'Note: Enter your mobile number in the above text field, the username and password linked to the provided number will be sent to it.',
@@ -135,7 +135,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         textAlign: TextAlign.justify,
                       ),
                       SizedBox(height: 10.0),
-                      _buildSendEmailBtn(),
+                      _buildSendSMSBtn(),
                     ],
                   ),
                 ),
