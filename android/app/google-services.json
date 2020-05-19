@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "629440185187",
+    "firebase_url": "https://metropay-123.firebaseio.com",
+    "project_id": "metropay-123",
+    "storage_bucket": "metropay-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629440185187:android:aaf243e2c35e28c9024956",
+        "android_client_info": {
+          "package_name": "MetroPay.metropay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629440185187-s0hqilktul5vcrfkfgcb025pp4njsgrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdeq6SqN_kZoUCSTCcn5_VOWLhT7rAsjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629440185187-s0hqilktul5vcrfkfgcb025pp4njsgrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
