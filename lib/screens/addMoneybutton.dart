@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:metropay/screens/PaymentSelectionButton.dart';
 
 class AddMoneyButton extends StatefulWidget {
   @override
@@ -54,7 +55,12 @@ class _AddMoneyButtonState extends State<AddMoneyButton> {
       child: RaisedButton(
         elevation: 4.0,
         onPressed: () {
-          Navigator.pop(context,amountController);
+          //Navigator.pop(context,amountController);
+          //Navigator.push(context, PaymentSelectionButton);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
+          );
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(

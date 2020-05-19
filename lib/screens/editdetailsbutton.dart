@@ -9,7 +9,7 @@ class EditDetailsButton extends StatefulWidget {
 class _EditDetailsButtonState extends State<EditDetailsButton> {
   var username = 'Username';
   var fullName = 'fullName';
-  var mobile = 9876543210;
+  // var mobile = 9876543210;
   var emailId = 'example@123.com';
 
 
@@ -42,11 +42,11 @@ class _EditDetailsButtonState extends State<EditDetailsButton> {
                   hintText: fullName, fillColor: Colors.white),
               keyboardType: TextInputType.text,
             ),
-            new TextFormField(
-              decoration: new InputDecoration(
-                  hintText: mobile.toString(), fillColor: Colors.white),
-              keyboardType: TextInputType.phone,
-            ),
+            // new TextFormField(
+            //   decoration: new InputDecoration(
+            //       hintText: mobile.toString(), fillColor: Colors.white),
+            //   keyboardType: TextInputType.phone,
+            // ),
             new TextFormField(
               decoration: new InputDecoration(
                   hintText: emailId, fillColor: Colors.white),

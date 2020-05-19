@@ -11,7 +11,7 @@ class ProfileButton extends StatefulWidget {
 
 class _ProfileButtonState extends State<ProfileButton> {
   var fullName = 'fullName';
-  var mobile = 9876543210;
+  // var mobile = 9876543210;
   var emailId = 'example@123.com';
 
   Widget _userDetails() {
@@ -62,7 +62,7 @@ class _ProfileButtonState extends State<ProfileButton> {
               margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
             SizedBox(height: 15.0),
             Text(
-              'Name  : '+fullName+'\n\n'+'Mobile : '+ mobile.toString() +'\n\n'+'Email   : '+emailId,
+              'Name  : '+fullName+'\n\n'+'Email   : '+emailId,
               style: TextStyle(
                 fontSize: 16.0,
                 letterSpacing: 0.8,

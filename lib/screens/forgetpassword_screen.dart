@@ -10,12 +10,49 @@ class ForgetScreen extends StatefulWidget {
 
 class _ForgetScreenState extends State<ForgetScreen> {
 
-  Widget _buildMobileNumberTF() {
+  String emailId;
+
+//  Widget _buildMobileNumberTF() {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          'Mobile number',
+//          style: kLabelStyle,
+//        ),
+//        SizedBox(height: 10.0),
+//        Container(
+//          alignment: Alignment.centerLeft,
+//          decoration: kBoxDecorationStyle,
+//          height: 60.0,
+//          child: TextField(
+//            keyboardType: TextInputType.phone,
+//            style: TextStyle(
+//              color: Colors.white,
+//              fontFamily: 'OpenSans',
+//            ),
+//            decoration: InputDecoration(
+//              border: InputBorder.none,
+//              contentPadding: EdgeInsets.only(top: 14.0),
+//              prefixIcon: Icon(
+//                Icons.phone,
+//                color: Colors.white,
+//              ),
+//              hintText: 'Enter your Mobile number',
+//              hintStyle: kHintTextStyle,
+//            ),
+//          ),
+//        ),
+//      ],
+//    );
+//  }
+
+  Widget _buildemailIdTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Mobile number',
+          'Email',
           style: kLabelStyle,
         ),
         SizedBox(height: 10.0),
@@ -24,7 +61,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            keyboardType: TextInputType.phone,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (Text){
+              emailId = Text;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -33,10 +73,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.phone,
+                Icons.alternate_email,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Mobile number',
+              hintText: 'Enter your email',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -45,7 +85,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
     );
   }
 
-  Widget _buildSendSMSBtn() {
+  Widget _buildSendEmailBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -53,7 +93,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
         elevation: 4.0,
         onPressed: () {
           Navigator.pop(context);
-          Toast.show("SMS Sent", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+          Toast.show("email sent", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -61,7 +101,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
         ),
 //        color: Colors.white,
         child: Text(
-          'Send SMS',
+          'Send email',
           style: TextStyle(
 //            color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -121,10 +161,10 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
-                      _buildMobileNumberTF(),
+                      _buildemailIdTF(),
                       SizedBox(height: 20.0),
                       Text(
-                        'Note: Enter your mobile number in the above text field, the username and password linked to the provided number will be sent to it.',
+                        'Note: Enter your email in the above text field, the username and password linked to the provided email will be sent to that email.',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'OpenSans',
@@ -135,7 +175,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         textAlign: TextAlign.justify,
                       ),
                       SizedBox(height: 10.0),
-                      _buildSendSMSBtn(),
+                      _buildSendEmailBtn(),
                     ],
                   ),
                 ),

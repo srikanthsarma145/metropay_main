@@ -15,8 +15,8 @@ class _HomeButtonState extends State<HomeButton> {
 //  var destinvalue;
 
 
-  var boardingPoint = 'Boarding Point';
-  var destinationPoint = 'Destination Point';
+  String boardingPoint = 'Boarding Point';
+  String destinationPoint = 'Destination Point';
 
 //  boardtoggling(_travelling){
 //    if(_travelling){
@@ -49,7 +49,12 @@ class _HomeButtonState extends State<HomeButton> {
           borderRadius: BorderRadius.circular(5.0),
         ),
 //        color: Colors.white,
-        child: Text(
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Icon(Icons.location_on,
+                color: Colors.red,),
+                Text(
           boardingPoint,
           style: TextStyle(
 //            color: Color(0xFF478DE0),
@@ -58,6 +63,8 @@ class _HomeButtonState extends State<HomeButton> {
             fontWeight: FontWeight.bold,
             fontFamily: 'OpenSans',
           ),
+        ),
+          ],
         ),
       ),
     );
@@ -82,7 +89,12 @@ class _HomeButtonState extends State<HomeButton> {
         ),
 
 //        color: Colors.white,
-        child: Text(
+        child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Icon(Icons.location_on,
+                color: Colors.green,),
+                Text(
           destinationPoint,
           style: TextStyle(
 //            color: Color(0xFF478DE0),
@@ -91,6 +103,8 @@ class _HomeButtonState extends State<HomeButton> {
             fontWeight: FontWeight.bold,
             fontFamily: 'OpenSans',
           ),
+        ),
+          ],
         ),
       ),
     );

@@ -15,11 +15,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  // final usernameController = TextEditingController();
+  // final passwordController = TextEditingController();
 
-  var userName = '123' ;
-  var passWord = '123';
+  String user,pass;
+  String userName = 'abc';
+  String passWord = '123';
 
 //  @override
 //  void dispose() {
@@ -29,12 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
 //    super.dispose();
 //  }
 
-  Widget _buildMobileNumTF() {
+Widget _buildEmailIdTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Mobile Number',
+          'Email',
           style: kLabelStyle,
         ),
         SizedBox(height: 10.0),
@@ -43,8 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            controller: usernameController,
-            keyboardType: TextInputType.phone,
+            // controller: usernameController,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (Text){
+              user = Text;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -53,10 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
               border: InputBorder.none,
               contentPadding: EdgeInsets.only(top: 14.0),
               prefixIcon: Icon(
-                Icons.phone,
+                Icons.alternate_email,
                 color: Colors.white,
               ),
-              hintText: 'Enter your Mobile Number',
+              hintText: 'Enter your email',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -64,6 +68,42 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
+  // Widget _buildMobileNumTF() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: <Widget>[
+  //       Text(
+  //         'Mobile Number',
+  //         style: kLabelStyle,
+  //       ),
+  //       SizedBox(height: 10.0),
+  //       Container(
+  //         alignment: Alignment.centerLeft,
+  //         decoration: kBoxDecorationStyle,
+  //         height: 60.0,
+  //         child: TextField(
+  //           controller: usernameController,
+  //           keyboardType: TextInputType.phone,
+  //           style: TextStyle(
+  //             color: Colors.white,
+  //             fontFamily: 'OpenSans',
+  //           ),
+  //           decoration: InputDecoration(
+  //             border: InputBorder.none,
+  //             contentPadding: EdgeInsets.only(top: 14.0),
+  //             prefixIcon: Icon(
+  //               Icons.phone,
+  //               color: Colors.white,
+  //             ),
+  //             hintText: 'Enter your Mobile Number',
+  //             hintStyle: kHintTextStyle,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _buildPasswordTF() {
     return Column(
@@ -79,8 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            controller: passwordController,
+            // controller: passwordController,
             obscureText: true,
+            onChanged: (Text){
+              pass = Text;
+            },
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -130,20 +173,20 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 4.0,
         onPressed: () {
 
-          if ((usernameController.text == userName.toString()) && (passwordController.text == passWord)) {
+          if ((user == userName) && (pass == passWord)) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomeScreen(/*userId: userName,*/)),
             );
           }
           // ignore: unrelated_type_equality_checks
-          else if((usernameController.text == "") && (passwordController.text == "")){
+          else if((user == "") && (pass == "")){
             Toast.show("Enter Username and Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
           }
-          else if((usernameController.text == "") && (passwordController.text != "")){
+          else if((user == "") && (pass != "")){
             Toast.show("Enter Username", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
           }
-          else if((usernameController.text != "") && (passwordController.text == "")){
+          else if((user != "") && (pass == "")){
             Toast.show("Enter Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
           }
           else{
@@ -249,7 +292,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 30.0),
-                      _buildMobileNumTF(),
+                      _buildEmailIdTF(),
                       SizedBox(
                         height: 30.0,
                       ),
