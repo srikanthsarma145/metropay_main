@@ -52,13 +52,13 @@ class _WalletButtonState extends State<WalletButton> {
       child: RaisedButton(
         elevation: 4.0,
         onPressed: () {
-//          balanceAmount=balanceAmount+100;
-//          setState(() {
-//          });
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => AddMoneyButton()),
           );
+         setState(() {
+         });
+        balanceAmount=balanceAmount+100;
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
