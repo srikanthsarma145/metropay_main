@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:metropay/utilities/constants.dart';
 import 'package:metropay/services/auth.dart';
 import 'package:toast/toast.dart';
+import 'package:metropay/utilities/loading.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -14,6 +15,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 // final mobileNoController = TextEditingController();
 //   final usernameController = TextEditingController();
 //   final passwordController = TextEditingController();
@@ -270,12 +272,14 @@ class _SignupScreenState extends State<SignupScreen> {
         elevation: 4.0,
           onPressed: () async{
             if(_formKey.currentState.validate()){
+              setState(() => loading = true);
               dynamic result = await _auth.registerWithEmailAndPassword(eMail, passWord);
               Navigator.pop(
               context,
             );
               if(result == null) {
                 setState(() {
+                  loading = false;
                   error = 'Please enter a valid email';
                   Toast.show(error, context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
                 });
@@ -303,7 +307,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
