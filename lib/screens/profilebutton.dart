@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './editdetailsbutton.dart';
+import 'package:metropay/services/auth.dart';
 
 class ProfileButton extends StatefulWidget {
+
+
 //  final String userId;
 //  ProfileButton({this.userId});
   @override
@@ -10,6 +13,9 @@ class ProfileButton extends StatefulWidget {
 }
 
 class _ProfileButtonState extends State<ProfileButton> {
+
+  final AuthService _auth = AuthService();
+
   var fullName = 'fullName';
   // var mobile = 9876543210;
   var emailId = 'example@123.com';
@@ -81,8 +87,9 @@ class _ProfileButtonState extends State<ProfileButton> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 4.0,
-        onPressed: () {
-          Navigator.pop(context);
+        onPressed: () async{
+//          Navigator.pop(context);
+        await _auth.signOut();
         },
         padding: EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(

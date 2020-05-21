@@ -5,6 +5,7 @@ import './signup_screen.dart';
 import './forgetpassword_screen.dart';
 import './homepage_screen.dart';
 import 'package:toast/toast.dart';
+import 'package:metropay/services/auth.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -17,10 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // final usernameController = TextEditingController();
   // final passwordController = TextEditingController();
-
-  String user,pass;
-  String userName = 'abc';
-  String passWord = '123';
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+//  String user,pass;
+  String eMail = '';
+  String passWord = '';
+  String error='';
 
 //  @override
 //  void dispose() {
@@ -30,41 +33,84 @@ class _LoginScreenState extends State<LoginScreen> {
 //    super.dispose();
 //  }
 
-Widget _buildEmailIdTF() {
+  Widget _buildEmailIdTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Email',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            // controller: usernameController,
-            keyboardType: TextInputType.emailAddress,
-            onChanged: (Text){
-              user = Text;
-            },
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.alternate_email,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your email',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
+        Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                children : <Widget>[
+                  Text(
+                    'Email',
+                    style: kLabelStyle,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+//          key: _formKey,
+                    alignment: Alignment.centerLeft,
+                    decoration: kBoxDecorationStyle,
+                    height: 60.0,
+                    child: TextFormField(
+                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                      onChanged: (val){
+                        setState(() => eMail = val);
+                      },
+                      keyboardType: TextInputType.emailAddress,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'OpenSans',
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(top: 14.0),
+                        prefixIcon: Icon(
+                          Icons.alternate_email,
+                          color: Colors.white,
+                        ),
+                        hintText: 'Enter your Email',
+                        hintStyle: kHintTextStyle,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  Text(
+                    'Password',
+                    style: kLabelStyle,
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(
+//          key: _formKey,
+                    alignment: Alignment.centerLeft,
+                    decoration: kBoxDecorationStyle,
+                    height: 60.0,
+                    child: TextFormField(
+                      validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
+                      // controller: passwordController,
+                      obscureText: true,
+                      onChanged: (val){
+                        setState(() => passWord = val);
+                      },
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'OpenSans',
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.only(top: 14.0),
+                        prefixIcon: Icon(
+                          Icons.vpn_key,
+                          color: Colors.white,
+                        ),
+                        hintText: 'Enter your Password',
+                        hintStyle: kHintTextStyle,
+                      ),
+                    ),
+                  ),
+                ]
+            )
+        )
       ],
     );
   }
@@ -105,45 +151,47 @@ Widget _buildEmailIdTF() {
   //   );
   // }
 
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            // controller: passwordController,
-            obscureText: true,
-            onChanged: (Text){
-              pass = Text;
-            },
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.vpn_key,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-            ),
-            keyboardType: TextInputType.text,
-          ),
-        ),
-      ],
-    );
-  }
+//  Widget _buildPasswordTF() {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          'Password',
+//          style: kLabelStyle,
+//        ),
+//        SizedBox(height: 10.0),
+//        Container(
+//          key: _formKey,
+//          alignment: Alignment.centerLeft,
+//          decoration: kBoxDecorationStyle,
+//          height: 60.0,
+//          child: TextFormField(
+//            validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
+//            // controller: passwordController,
+//            obscureText: true,
+//            onChanged: (val){
+//              setState(() => passWord = val);
+//            },
+//            style: TextStyle(
+//              color: Colors.white,
+//              fontFamily: 'OpenSans',
+//            ),
+//            decoration: InputDecoration(
+//              border: InputBorder.none,
+//              contentPadding: EdgeInsets.only(top: 14.0),
+//              prefixIcon: Icon(
+//                Icons.vpn_key,
+//                color: Colors.white,
+//              ),
+//              hintText: 'Enter your Password',
+//              hintStyle: kHintTextStyle,
+//            ),
+//            keyboardType: TextInputType.text,
+//          ),
+//        ),
+//      ],
+//    );
+//  }
 
   Widget _buildForgotPasswordBtn() {
     return Container(
@@ -171,27 +219,36 @@ Widget _buildEmailIdTF() {
       width: double.infinity,
       child: RaisedButton(
         elevation: 4.0,
-        onPressed: () {
+        onPressed: () async{
+          if(_formKey.currentState.validate()){
+            dynamic result = await _auth.signInWithEmailAndPassword(eMail, passWord);
+            if(result == null) {
+              setState(() {
+                error = 'incorrect email or password';
+                Toast.show(error, context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+              });
+            }
+          }
 
-          if ((user == userName) && (pass == passWord)) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen(/*userId: userName,*/)),
-            );
-          }
-          // ignore: unrelated_type_equality_checks
-          else if((user == "") && (pass == "")){
-            Toast.show("Enter Username and Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-          }
-          else if((user == "") && (pass != "")){
-            Toast.show("Enter Username", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-          }
-          else if((user != "") && (pass == "")){
-            Toast.show("Enter Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-          }
-          else{
-            Toast.show("Incorrect Username or Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-          }
+//          if ((user == eMail) && (pass == passWord)) {
+//            Navigator.push(
+//              context,
+//              MaterialPageRoute(builder: (context) => HomeScreen(/*userId: userName,*/)),
+//            );
+//          }
+//          // ignore: unrelated_type_equality_checks
+//          else if((user == "") && (pass == "")){
+//            Toast.show("Enter Username and Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+//          }
+//          else if((user == "") && (pass != "")){
+//            Toast.show("Enter Username", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+//          }
+//          else if((user != "") && (pass == "")){
+//            Toast.show("Enter Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+//          }
+//          else{
+//            Toast.show("Incorrect Username or Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+//          }
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -293,10 +350,8 @@ Widget _buildEmailIdTF() {
                       ),
                       SizedBox(height: 30.0),
                       _buildEmailIdTF(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      _buildPasswordTF(),
+//                      SizedBox(height: 30.0),
+//                      _buildPasswordTF(),
                       _buildForgotPasswordBtn(),
                       _buildLoginBtn(),
                       _buildSignUpBtn(),

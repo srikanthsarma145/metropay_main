@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:metropay/screens/RedirectButton.dart';
+import './RedirectButton.dart';
 
 class PaymentSelectionButton extends StatefulWidget {
   @override

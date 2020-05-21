@@ -1,6 +1,6 @@
-import 'package:metropay_test/models/user.dart';
-import 'package:metropay_test/screens/login_screen.dart';
-import 'package:metropay_test/screens/homepage_screen.dart';
+import 'package:metropay/models/user.dart';
+import 'package:metropay/screens/login_screen.dart';
+import 'package:metropay/screens/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:metropay/screens/PaymentSelectionButton.dart';
+import './PaymentSelectionButton.dart';
 
 class AddMoneyButton extends StatefulWidget {
   @override
