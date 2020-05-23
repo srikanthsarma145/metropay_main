@@ -45,6 +45,9 @@ class _HomeButtonState extends State<HomeButton> {
               print(response.content);
             });
              boarding = rnd.nextInt(5).toString();
+             while(double.parse(boarding)==0){
+               boarding = rnd.nextInt(5).toString();
+             }
             boardingPoint = 'Station ' +boarding;
           }
           else{
@@ -104,6 +107,9 @@ class _HomeButtonState extends State<HomeButton> {
                     print(response.content);
                   });
                   destination = rnd.nextInt(5).toString();
+                  while(double.parse(boarding)==0){
+                    destination = rnd.nextInt(5).toString();
+                  }
                   destinationPoint='Station '+destination;
                 }
                 setState(() {});
