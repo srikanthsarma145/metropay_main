@@ -19,18 +19,18 @@ class DatabaseService {
     });
   }
 
-  // brew list from snapshot
-  List<Mpayuser> _mpayuserListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc){
-      //print(doc.data);
-      return Mpayuser(
-          name: doc.data['name'] ?? '',
-          balance: doc.data['balance'] ?? 0.0,
-          boarding: doc.data['boarding'] ?? '1',
-          destination: doc.data['destination'] ?? '1',
-      );
-    }).toList();
-  }
+//  // mpay user list from snapshot
+//  List<Mpayuser> _mpayuserListFromSnapshot(QuerySnapshot snapshot) {
+//    return snapshot.documents.map((doc){
+//      //print(doc.data);
+//      return Mpayuser(
+//          name: doc.data['name'] ?? '',
+//          balance: doc.data['balance'] ?? 0.0,
+//          boarding: doc.data['boarding'] ?? '1',
+//          destination: doc.data['destination'] ?? '1',
+//      );
+//    }).toList();
+//  }
 
   // user data from snapshots
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
@@ -44,11 +44,11 @@ class DatabaseService {
     );
   }
 
-  // get mpayusers stream
-  Stream<List<Mpayuser>> get mpayusers {
-    return mpayuserCollection.snapshots()
-    .map(_mpayuserListFromSnapshot);
-  }
+//  // get mpayusers stream
+//  Stream<List<Mpayuser>> get mpayusers {
+//    return mpayuserCollection.snapshots()
+//    .map(_mpayuserListFromSnapshot);
+//  }
 
   // get user doc stream
   Stream<UserData> get userData {

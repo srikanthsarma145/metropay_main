@@ -10,8 +10,6 @@ import 'package:metropay/services/database.dart';
 
 class ProfileButton extends StatefulWidget {
 
-//  final String userId;
-//  ProfileButton({this.userId});
 
   final Mpayuser mpayuser;
   ProfileButton({ this.mpayuser });
@@ -33,10 +31,6 @@ class _ProfileButtonState extends State<ProfileButton> {
     });
   }
 
-  //  String _currentName;
-  //  double _currentbalance;
-  //  String _currentboarding;
-  //  String _currentdestination;
 
   Widget _userDetails() {
 
@@ -92,7 +86,6 @@ class _ProfileButtonState extends State<ProfileButton> {
                   Container(
                     height: 100,
                    child: Icon(Icons.account_box,
-                     color: Colors.white,
                    size: 100,),
                   ),
                   SizedBox(height: 15.0),
@@ -145,39 +138,9 @@ class _ProfileButtonState extends State<ProfileButton> {
     );
   }
 
-//  Future<bool> _onBackPressed(){
-//    return showDialog(
-//      context: context,
-//      builder: (context)=>AlertDialog(
-//        title: Text("Do you really want to exit"),
-//        actions: <Widget>[
-//          FlatButton(
-//            child: Text(
-//              "No",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,false),
-//          ),
-//          FlatButton(
-//            child: Text(
-//              "Yes",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,true),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
 
   @override
   Widget build(BuildContext context) {
-//    final mpayusers = Provider.of<List<Mpayuser>>(context);
-
 
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(

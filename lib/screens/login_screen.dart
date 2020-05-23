@@ -4,7 +4,6 @@ import 'package:metropay/utilities/constants.dart';
 import 'package:metropay/utilities/loading.dart';
 import './signup_screen.dart';
 import './forgetpassword_screen.dart';
-//import './homepage_screen.dart';
 import 'package:toast/toast.dart';
 import 'package:metropay/services/auth.dart';
 
@@ -17,23 +16,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  // final usernameController = TextEditingController();
-  // final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
-//  String user,pass;
   String eMail = '';
   String passWord = '';
   String error='';
 
-//  @override
-//  void dispose() {
-//    // Clean up the controller when the widget is disposed.
-//    usernameController.dispose();
-//    passwordController.dispose();
-//    super.dispose();
-//  }
+
 
   Widget _buildEmailIdTF() {
     return Column(
@@ -117,83 +107,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Widget _buildMobileNumTF() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: <Widget>[
-  //       Text(
-  //         'Mobile Number',
-  //         style: kLabelStyle,
-  //       ),
-  //       SizedBox(height: 10.0),
-  //       Container(
-  //         alignment: Alignment.centerLeft,
-  //         decoration: kBoxDecorationStyle,
-  //         height: 60.0,
-  //         child: TextField(
-  //           controller: usernameController,
-  //           keyboardType: TextInputType.phone,
-  //           style: TextStyle(
-  //             color: Colors.white,
-  //             fontFamily: 'OpenSans',
-  //           ),
-  //           decoration: InputDecoration(
-  //             border: InputBorder.none,
-  //             contentPadding: EdgeInsets.only(top: 14.0),
-  //             prefixIcon: Icon(
-  //               Icons.phone,
-  //               color: Colors.white,
-  //             ),
-  //             hintText: 'Enter your Mobile Number',
-  //             hintStyle: kHintTextStyle,
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-//  Widget _buildPasswordTF() {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          'Password',
-//          style: kLabelStyle,
-//        ),
-//        SizedBox(height: 10.0),
-//        Container(
-//          key: _formKey,
-//          alignment: Alignment.centerLeft,
-//          decoration: kBoxDecorationStyle,
-//          height: 60.0,
-//          child: TextFormField(
-//            validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
-//            // controller: passwordController,
-//            obscureText: true,
-//            onChanged: (val){
-//              setState(() => passWord = val);
-//            },
-//            style: TextStyle(
-//              color: Colors.white,
-//              fontFamily: 'OpenSans',
-//            ),
-//            decoration: InputDecoration(
-//              border: InputBorder.none,
-//              contentPadding: EdgeInsets.only(top: 14.0),
-//              prefixIcon: Icon(
-//                Icons.vpn_key,
-//                color: Colors.white,
-//              ),
-//              hintText: 'Enter your Password',
-//              hintStyle: kHintTextStyle,
-//            ),
-//            keyboardType: TextInputType.text,
-//          ),
-//        ),
-//      ],
-//    );
-//  }
 
   Widget _buildForgotPasswordBtn() {
     return Container(
@@ -234,25 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
             }
           }
 
-//          if ((user == eMail) && (pass == passWord)) {
-//            Navigator.push(
-//              context,
-//              MaterialPageRoute(builder: (context) => HomeScreen(/*userId: userName,*/)),
-//            );
-//          }
-//          // ignore: unrelated_type_equality_checks
-//          else if((user == "") && (pass == "")){
-//            Toast.show("Enter Username and Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-//          }
-//          else if((user == "") && (pass != "")){
-//            Toast.show("Enter Username", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-//          }
-//          else if((user != "") && (pass == "")){
-//            Toast.show("Enter Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-//          }
-//          else{
-//            Toast.show("Incorrect Username or Password", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
-//          }
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(

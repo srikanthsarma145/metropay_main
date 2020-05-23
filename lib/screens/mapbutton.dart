@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:metropay/screens/calculateFare.dart';
 import 'package:photo_view/photo_view.dart';
 
 class MapButton extends StatefulWidget {
@@ -8,6 +9,16 @@ class MapButton extends StatefulWidget {
 }
 
 class _MapButtonState extends State<MapButton> {
+
+
+  void _showFarePanel() {
+    showModalBottomSheet(context: context, builder: (context) {
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+        child: CalculateFareButton(),
+      );
+    });
+  }
 
   Widget _metroMap() {
     return Card(
@@ -45,34 +56,32 @@ class _MapButtonState extends State<MapButton> {
     );
   }
 
-//  Future<bool> _onBackPressed(){
-//    return showDialog(
-//      context: context,
-//      builder: (context)=>AlertDialog(
-//        title: Text("Do you really want to exit"),
-//        actions: <Widget>[
-//          FlatButton(
-//            child: Text(
-//              "No",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,false),
-//          ),
-//          FlatButton(
-//            child: Text(
-//              "Yes",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,true),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
+  Widget _calculateFareBtn() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+      width: double.infinity,
+      child: RaisedButton(
+        elevation: 4.0,
+        onPressed: () => _showFarePanel(),
+        padding: EdgeInsets.all(10.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+//        color: Colors.white,
+        child: Text(
+          'Calculate Fare',
+          style: TextStyle(
+//            color: Color(0xFF527DAA),
+            letterSpacing: 1.5,
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'OpenSans',
+          ),
+        ),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +132,7 @@ class _MapButtonState extends State<MapButton> {
                       SizedBox(height: 30.0),
                       _metroMap(),
                       SizedBox(height: 10.0),
+                      _calculateFareBtn(),
                     ],
                   ),
                 ),

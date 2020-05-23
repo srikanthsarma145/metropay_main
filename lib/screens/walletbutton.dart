@@ -96,35 +96,6 @@ class _WalletButtonState extends State<WalletButton> {
     );
   }
 
-//  Future<bool> _onBackPressed(){
-//    return showDialog(
-//      context: context,
-//      builder: (context)=>AlertDialog(
-//        title: Text("Do you really want to exit"),
-//        actions: <Widget>[
-//          FlatButton(
-//            child: Text(
-//              "No",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,false),
-//          ),
-//          FlatButton(
-//            child: Text(
-//              "Yes",
-//              style: TextStyle(
-//                fontSize: 18,
-//              ),
-//            ),
-//            onPressed: ()=>Navigator.pop(context,true),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -12,40 +12,6 @@ class _ForgetScreenState extends State<ForgetScreen> {
 
   String emailId;
 
-//  Widget _buildMobileNumberTF() {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          'Mobile number',
-//          style: kLabelStyle,
-//        ),
-//        SizedBox(height: 10.0),
-//        Container(
-//          alignment: Alignment.centerLeft,
-//          decoration: kBoxDecorationStyle,
-//          height: 60.0,
-//          child: TextField(
-//            keyboardType: TextInputType.phone,
-//            style: TextStyle(
-//              color: Colors.white,
-//              fontFamily: 'OpenSans',
-//            ),
-//            decoration: InputDecoration(
-//              border: InputBorder.none,
-//              contentPadding: EdgeInsets.only(top: 14.0),
-//              prefixIcon: Icon(
-//                Icons.phone,
-//                color: Colors.white,
-//              ),
-//              hintText: 'Enter your Mobile number',
-//              hintStyle: kHintTextStyle,
-//            ),
-//          ),
-//        ),
-//      ],
-//    );
-//  }
 
   Widget _buildemailIdTF() {
     return Column(

@@ -116,39 +116,6 @@ class _AddMoneyButtonState extends State<AddMoneyButton> {
     );
   }
 
-//  Widget _addAmountBtn() {
-//    return Container(
-//      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-//      width: double.infinity,
-//      child: RaisedButton(
-//        elevation: 4.0,
-//        onPressed: () async{
-//
-//          _currentbalance = _currentbalance+amount;
-//          Navigator.push(
-//            context,
-//            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
-//          );
-//        },
-//        padding: EdgeInsets.all(10.0),
-//        shape: RoundedRectangleBorder(
-//          borderRadius: BorderRadius.circular(5.0),
-//        ),
-////        color: Colors.white,
-//        child: Text(
-//          'Add to wallet',
-//          style: TextStyle(
-////            color: Color(0xFF527DAA),
-//            letterSpacing: 1.5,
-//            fontSize: 16.0,
-//            fontWeight: FontWeight.bold,
-//            fontFamily: 'OpenSans',
-//          ),
-//        ),
-//      ),
-//    );
-//  }
-
 
   @override
   Widget build(BuildContext context) {
