@@ -13,8 +13,8 @@ class Loading extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                height: double.infinity,
-                width: double.infinity,
+//                height: double.infinity,
+//                width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -30,7 +30,7 @@ class Loading extends StatelessWidget {
                 ),
               ),
               Container(
-                height: double.infinity,
+//                height: double.infinity,
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(

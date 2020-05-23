@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Form(
             key: _formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children : <Widget>[
                   Text(
                     'Email',

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:metropay/models/mpayuser.dart';
+import 'package:metropay/models/user.dart';
+import 'package:metropay/utilities/loading.dart';
 import './editdetailsbutton.dart';
 import 'package:metropay/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:metropay/services/database.dart';
 
 class ProfileButton extends StatefulWidget {
 
-
 //  final String userId;
 //  ProfileButton({this.userId});
+
+  final Mpayuser mpayuser;
+  ProfileButton({ this.mpayuser });
+
   @override
   _ProfileButtonState createState() => _ProfileButtonState();
 }
@@ -16,68 +24,95 @@ class _ProfileButtonState extends State<ProfileButton> {
 
   final AuthService _auth = AuthService();
 
-  var fullName = 'fullName';
-  // var mobile = 9876543210;
-  var emailId = 'example@123.com';
+  void _showEditPanel() {
+    showModalBottomSheet(context: context, builder: (context) {
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+        child: EditDetailsButton(),
+      );
+    });
+  }
+
+  //  String _currentName;
+  //  double _currentbalance;
+  //  String _currentboarding;
+  //  String _currentdestination;
 
   Widget _userDetails() {
-    return Card(
-      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'User Details',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    letterSpacing: 0.8,
-                    fontFamily: 'OpenSans',
-                    fontWeight: FontWeight.bold,
+
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+      stream: DatabaseService(uid: user.uid).userData,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+          UserData userData = snapshot.data;
+
+          return Card(
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 5.0, 15.0, 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'User Details',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          letterSpacing: 0.8,
+                          fontFamily: 'OpenSans',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      // SizedBox(width: 50.0),
+                      ButtonTheme(
+                        minWidth: 10.0,
+                        child: FlatButton(
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            // elevation: 4.0,
+                            onPressed: () => _showEditPanel(),
+                            padding: EdgeInsets.all(0.0),
+                            // color: Colors.white,
+                            child: Icon(
+                              Icons.edit,
+                              size: 20.0,
+                            )
+                          // color: Colors.black,)
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                // SizedBox(width: 50.0),
-                ButtonTheme(
-                    minWidth: 10.0,
-                    child: FlatButton(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    // elevation: 4.0,
-                    onPressed: () {
-                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EditDetailsButton()),
-                      );
-                    },
-                   padding: EdgeInsets.all(0.0),
-                    // color: Colors.white,
-                    child: Icon(
-                      Icons.edit,
-                      size: 20.0,
-                    )
-                    // color: Colors.black,)
+                  SizedBox(height: 10.0),
+                  Container(height: 4, color: Color(0xFF61A4F1),
+                    margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
+                  SizedBox(height: 15.0),
+                  Container(
+                    height: 100,
+                   child: Icon(Icons.account_box,
+                     color: Colors.white,
+                   size: 100,),
                   ),
-                ),
-              ],         
-            ),
-            SizedBox(height: 10.0),
-            Container(height: 4, color: Color(0xFF61A4F1),
-              margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
-            SizedBox(height: 15.0),
-            Text(
-              'Name  : '+fullName+'\n\n'+'Email   : '+emailId,
-              style: TextStyle(
-                fontSize: 16.0,
-                letterSpacing: 0.8,
-                fontFamily: 'OpenSans',
+                  SizedBox(height: 15.0),
+                  Text(
+                    'Name    : '+userData.name+'\n\n'+'Balance : '+userData.balance.toString(),
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      letterSpacing: 0.8,
+                      fontFamily: 'OpenSans',
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
+          );
+        }
+        else{
+          return Loading();
+        }
+      }
     );
   }
 
@@ -141,6 +176,9 @@ class _ProfileButtonState extends State<ProfileButton> {
 
   @override
   Widget build(BuildContext context) {
+//    final mpayusers = Provider.of<List<Mpayuser>>(context);
+
+
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
@@ -149,8 +187,8 @@ class _ProfileButtonState extends State<ProfileButton> {
           child: Stack(
             children: <Widget>[
               Container(
-               height: double.infinity,
-                width: double.infinity,
+//               height: double.infinity,
+//                width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -166,7 +204,7 @@ class _ProfileButtonState extends State<ProfileButton> {
                 ),
               ),
               Container(
-                height: double.infinity,
+//                height: double.infinity,
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:metropay/models/user.dart';
+import 'package:metropay/services/database.dart';
+import 'package:metropay/utilities/loading.dart';
 import './PaymentSelectionButton.dart';
+import 'package:provider/provider.dart';
 
 class AddMoneyButton extends StatefulWidget {
   @override
@@ -8,78 +12,142 @@ class AddMoneyButton extends StatefulWidget {
 }
 
 class _AddMoneyButtonState extends State<AddMoneyButton> {
-  final amountController = TextEditingController();
 
-  var amount = 0.00;
+  final _formKey = GlobalKey<FormState>();
+
+    String _currentName;
+    double _currentbalance;
+    String _currentboarding;
+    String _currentdestination;
+
+  double amount = 0.00;
 
   Widget _walletAmount() {
-    return Card(
-      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              'Amount',
-              style: TextStyle(
-                fontSize: 20.0,
-                letterSpacing: 0.8,
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+      stream: DatabaseService(uid: user.uid).userData,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+          UserData userData = snapshot.data;
+          _currentName = userData.name;
+          _currentdestination = userData.destination;
+          _currentboarding = userData.boarding;
+          _currentbalance = userData.balance;
+
+          return Card(
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      'Amount',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        letterSpacing: 0.8,
+                        fontFamily: 'OpenSans',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Container(
+                      height: 4,
+                      color: Color(0xFF61A4F1),
+                      margin: const EdgeInsets.only(left: 0.0, right: 190.0),
+                    ),
+                    TextFormField(
+                      validator: (val) => val.isEmpty ? 'Please enter amount' : null,
+                      decoration: new InputDecoration(
+                          hintText: "Enter Amount", fillColor: Colors.white),
+                      keyboardType: TextInputType.number,
+                      onChanged: (val) => setState(() {
+                        amount = double.parse(val);
+                      }),
+                    ),
+                     SizedBox(height: 15.0),
+                    RaisedButton(
+                      elevation: 4.0,
+                      onPressed: () async{
+                        if(_formKey.currentState.validate()){
+                          _currentbalance = _currentbalance + amount;
+                          await DatabaseService(uid: user.uid).updateUserData(
+                              _currentName ?? snapshot.data.name,
+                              _currentbalance ?? snapshot.data.balance,
+                              _currentboarding ?? snapshot.data.boarding,
+                              _currentdestination ?? snapshot.data.destination
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
+                          );
+//                          Navigator.pop(context);
+                        }
+                      },
+                      padding: EdgeInsets.all(10.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+//        color: Colors.white,
+                      child: Text(
+                        'Add to wallet',
+                        style: TextStyle(
+//            color: Color(0xFF527DAA),
+                          letterSpacing: 1.5,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 10.0),
-            Container(
-              height: 4,
-              color: Color(0xFF61A4F1),
-              margin: const EdgeInsets.only(left: 0.0, right: 190.0),
-            ),
-            // SizedBox(height: 15.0),
-            new TextFormField(
-              controller: amountController,
-              decoration: new InputDecoration(
-                  hintText: "Enter Amount", fillColor: Colors.white),
-              keyboardType: TextInputType.number,
-            ),
-        ],
-        ),
-      ),
+          );
+        }
+        else{
+          return Loading();
+        }
+      }
     );
   }
 
-  Widget _addAmountBtn() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 4.0,
-        onPressed: () {
-          //Navigator.pop(context,amountController);
-          //Navigator.push(context, PaymentSelectionButton);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
-          );
-        },
-        padding: EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-//        color: Colors.white,
-        child: Text(
-          'Add to wallet',
-          style: TextStyle(
-//            color: Color(0xFF527DAA),
-            letterSpacing: 1.5,
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
-  }
+//  Widget _addAmountBtn() {
+//    return Container(
+//      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+//      width: double.infinity,
+//      child: RaisedButton(
+//        elevation: 4.0,
+//        onPressed: () async{
+//
+//          _currentbalance = _currentbalance+amount;
+//          Navigator.push(
+//            context,
+//            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
+//          );
+//        },
+//        padding: EdgeInsets.all(10.0),
+//        shape: RoundedRectangleBorder(
+//          borderRadius: BorderRadius.circular(5.0),
+//        ),
+////        color: Colors.white,
+//        child: Text(
+//          'Add to wallet',
+//          style: TextStyle(
+////            color: Color(0xFF527DAA),
+//            letterSpacing: 1.5,
+//            fontSize: 16.0,
+//            fontWeight: FontWeight.bold,
+//            fontFamily: 'OpenSans',
+//          ),
+//        ),
+//      ),
+//    );
+//  }
 
 
   @override
@@ -131,7 +199,7 @@ class _AddMoneyButtonState extends State<AddMoneyButton> {
                       SizedBox(height: 30.0),
                       _walletAmount(),
 //                      SizedBox(height: 10.0),
-                      _addAmountBtn(),
+//                      _addAmountBtn(),
 //                      SizedBox(height: 10.0),
                     ],
                   ),

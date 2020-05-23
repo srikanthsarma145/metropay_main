@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:metropay/utilities/constants.dart';
 import 'package:metropay/services/auth.dart';
-import 'package:toast/toast.dart';
 import 'package:metropay/utilities/loading.dart';
+import 'package:toast/toast.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -72,7 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
         Form(
           key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
           children : <Widget>[
             Text(
               'Email',

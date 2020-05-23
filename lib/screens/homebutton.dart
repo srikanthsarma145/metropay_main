@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 import 'package:toast/toast.dart';
+import 'dart:math';
 
 class HomeButton extends StatefulWidget {
   @override
@@ -10,10 +11,12 @@ class HomeButton extends StatefulWidget {
 
 class _HomeButtonState extends State<HomeButton> {
 
-//  bool _travelling = false;
-//  var boardvalue;
-//  var destinvalue;
+  final List<String> stations = ['1', '2', '3', '4'];
 
+  String _currentName;
+  double _currentbalance;
+  String _currentboarding;
+  String _currentdestination;
 
   String boardingPoint = 'Boarding Point';
   String destinationPoint = 'Destination Point';

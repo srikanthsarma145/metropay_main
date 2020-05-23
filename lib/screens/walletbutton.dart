@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:metropay/models/user.dart';
+import 'package:metropay/services/database.dart';
+import 'package:metropay/utilities/loading.dart';
 import './addMoneybutton.dart';
+import 'package:provider/provider.dart';
 
 class WalletButton extends StatefulWidget {
   @override
@@ -12,36 +16,49 @@ class _WalletButtonState extends State<WalletButton> {
    var balanceAmount = 0.0;
 
   Widget _metroPayAmount() {
-    return Card(
-      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              'MetroPay Balance',
-              style: TextStyle(
-                fontSize: 18.0,
-                letterSpacing: 0.8,
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+      stream: DatabaseService(uid: user.uid).userData,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+          UserData userData = snapshot.data;
+
+          return Card(
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    'MetroPay Balance',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      letterSpacing: 0.8,
+                      fontFamily: 'OpenSans',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Container(height: 4, color: Color(0xFF61A4F1),
+                    margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
+                  SizedBox(height: 10.0),
+                  Text(
+                    '₹ '+ userData.balance.toString(),
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontFamily: 'OpenSans',
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 10.0),
-            Container(height: 4, color: Color(0xFF61A4F1),
-              margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
-            SizedBox(height: 10.0),
-            Text(
-              '₹ '+ balanceAmount.toString(),
-              style: TextStyle(
-                fontSize: 30.0,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-          ],
-        ),
-      ),
+          );
+        }else{
+          return Loading();
+        }
+      }
     );
   }
 
