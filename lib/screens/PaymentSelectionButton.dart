@@ -42,7 +42,7 @@ class _PaymentSelectionButtonState extends State<PaymentSelectionButton> {
     );
   }
 
-  Widget _UpiBtn() {
+  Widget _upiBtn() {
     return Container(
       padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
       width: double.infinity,
@@ -79,7 +79,7 @@ class _PaymentSelectionButtonState extends State<PaymentSelectionButton> {
       ),
     );
   }
-  Widget _CardBtn() {
+  Widget _cardBtn() {
     return Container(
       padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
       width: double.infinity,
@@ -116,7 +116,7 @@ class _PaymentSelectionButtonState extends State<PaymentSelectionButton> {
       ),
     );
   }
-  Widget _NetBankBtn() {
+  Widget _netBankBtn() {
     return Container(
       padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
       width: double.infinity,
@@ -203,9 +203,9 @@ class _PaymentSelectionButtonState extends State<PaymentSelectionButton> {
                       SizedBox(height: 30.0),
                       _walletAmount(),
 //                      SizedBox(height: 10.0),
-                      _UpiBtn(),
-                      _CardBtn(),
-                      _NetBankBtn(),
+                      _upiBtn(),
+                      _cardBtn(),
+                      _netBankBtn(),
 //                      SizedBox(height: 10.0),
                     ],
                   ),

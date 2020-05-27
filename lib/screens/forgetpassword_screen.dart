@@ -28,8 +28,8 @@ class _ForgetScreenState extends State<ForgetScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: (Text){
-              emailId = Text;
+            onChanged: (text){
+              emailId = text;
             },
             style: TextStyle(
               color: Colors.white,
