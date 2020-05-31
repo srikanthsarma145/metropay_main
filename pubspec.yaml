@@ -32,6 +32,8 @@ dependencies:
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
   flutter_spinkit: ^4.1.2+1
+  razorpay_flutter: ^1.2.1
+  fluttertoast: ^4.0.0
 
 dev_dependencies:
   flutter_test:

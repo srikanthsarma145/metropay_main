@@ -7,7 +7,7 @@ import 'package:metropay/utilities/loading.dart';
 import 'package:toast/toast.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
-import 'package:metropay/models/user.dart';
+
 
 class HomeButton extends StatefulWidget {
   @override
@@ -44,6 +44,11 @@ class _HomeButtonState extends State<HomeButton> {
             FlutterNfcReader.read().then((response) {
               print(response.content);
             });
+            FlutterNfcReader.onTagDiscovered().listen((onData) {
+              print(onData.id);
+              print(onData.content);
+            });
+
             boarding = rnd.nextInt(5).toString();
             while(double.parse(boarding)==0){
               boarding = rnd.nextInt(5).toString();
@@ -105,6 +110,13 @@ class _HomeButtonState extends State<HomeButton> {
                     FlutterNfcReader.read().then((response) {
                       Toast.show("Working!!!", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
                       print(response.content);
+                    });
+                    FlutterNfcReader.onTagDiscovered().listen((data) {
+                      print(data.id);
+                      print(data.content);
+                    });
+                    FlutterNfcReader.stop().then((response) {
+                      print(response.status.toString());
                     });
                     destination = rnd.nextInt(5).toString();
                     while(double.parse(destination)==0){

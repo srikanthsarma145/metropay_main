@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:metropay/models/user.dart';
 import 'package:metropay/services/database.dart';
 import 'package:metropay/utilities/loading.dart';
-import './PaymentSelectionButton.dart';
+//import './PaymentSelectionButton.dart';
 import 'package:provider/provider.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddMoneyButton extends StatefulWidget {
   @override
@@ -19,8 +21,56 @@ class _AddMoneyButtonState extends State<AddMoneyButton> {
     double _currentbalance;
     String _currentboarding;
     String _currentdestination;
+    String flag;
 
   double amount = 0.00;
+  Razorpay _razorpay;
+
+  @override
+  void initState()
+  {
+    super.initState();
+    _razorpay =Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+  @override
+  void dispose(){
+    super.dispose();
+    _razorpay.clear();
+  }
+  void openCheckout() async{
+    var options= {
+      'key': 'rzp_test_YTc5wEoFBMy0aR',
+      'amount': amount*100,
+      'name': 'MetroPay',
+      'description': 'Test Payment Gateway',
+      'prefil': {'contact' : '', 'email' : ''},
+      'external' : {
+        'wallets' : ['paytm']
+      }
+    };
+    try{
+      _razorpay.open(options);
+    }
+    catch(e){
+      debugPrint(e);
+    }
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response){
+    Fluttertoast.showToast(msg: "PAYMENT SUCCESSFUL \n"+'Payment Id'+response.paymentId);
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response){
+    Fluttertoast.showToast(msg: "ERROR "+response.code.toString() + "  .  " + response.message);
+    flag = 'fail';
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response){
+    Fluttertoast.showToast(msg: "EXTERNAL WALLET "  + response.walletName);
+  }
 
   Widget _walletAmount() {
     final user = Provider.of<User>(context);
@@ -65,25 +115,28 @@ class _AddMoneyButtonState extends State<AddMoneyButton> {
                           hintText: "Enter Amount", fillColor: Colors.white),
                       keyboardType: TextInputType.number,
                       onChanged: (val) => setState(() {
-                        amount = double.parse(val);
+                          amount = double.parse(val);
                       }),
                     ),
                      SizedBox(height: 15.0),
                     RaisedButton(
                       elevation: 4.0,
                       onPressed: () async{
+                        openCheckout();
                         if(_formKey.currentState.validate()){
-                          _currentbalance = _currentbalance + amount;
-                          await DatabaseService(uid: user.uid).updateUserData(
+                          if(flag!='fail'){
+                            _currentbalance = _currentbalance + amount;
+                          }
+                           await DatabaseService(uid: user.uid).updateUserData(
                               _currentName ?? snapshot.data.name,
                               _currentbalance ?? snapshot.data.balance,
                               _currentboarding ?? snapshot.data.boarding,
                               _currentdestination ?? snapshot.data.destination
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
-                          );
+                   //       Navigator.push(
+                        //context,
+                          //  MaterialPageRoute(builder: (context) => PaymentSelectionButton()),
+                          //);
 //                          Navigator.pop(context);
                         }
                       },
