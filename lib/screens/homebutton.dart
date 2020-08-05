@@ -8,15 +8,13 @@ import 'package:toast/toast.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
 
-
 class HomeButton extends StatefulWidget {
   @override
   _HomeButtonState createState() => _HomeButtonState();
 }
 
 class _HomeButtonState extends State<HomeButton> {
-
-  final List<String> stations = ['1', '2', '3', '4','5'];
+  final List<String> stations = ['1', '2', '3', '4', '5'];
 
   Random rnd = new Random();
 
@@ -29,7 +27,6 @@ class _HomeButtonState extends State<HomeButton> {
   String destination;
   String fare;
 
-
   String boardingPoint = 'Boarding Point';
   String destinationPoint = 'Destination Point';
 
@@ -39,8 +36,8 @@ class _HomeButtonState extends State<HomeButton> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: (){
-          if(boardingPoint=='Boarding Point'){
+        onPressed: () {
+          if (boardingPoint == 'Boarding Point') {
             FlutterNfcReader.read().then((response) {
               print(response.content);
             });
@@ -50,12 +47,11 @@ class _HomeButtonState extends State<HomeButton> {
             });
 
             boarding = rnd.nextInt(5).toString();
-            while(double.parse(boarding)==0){
+            while (double.parse(boarding) == 0) {
               boarding = rnd.nextInt(5).toString();
             }
-            boardingPoint = 'Station ' +boarding;
-          }
-          else{
+            boardingPoint = 'Station ' + boarding;
+          } else {
             return null;
           }
           setState(() {});
@@ -68,8 +64,10 @@ class _HomeButtonState extends State<HomeButton> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(Icons.location_on,
-              color: Colors.red,),
+            Icon(
+              Icons.location_on,
+              color: Colors.red,
+            ),
             Text(
               boardingPoint,
               style: TextStyle(
@@ -87,28 +85,28 @@ class _HomeButtonState extends State<HomeButton> {
   }
 
   Widget _destinationPointBtn() {
-
     final user = Provider.of<User>(context);
 
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
-          if(snapshot.hasData){
+          if (snapshot.hasData) {
             UserData userData = snapshot.data;
             _currentName = userData.name;
             _currentbalance = userData.balance;
             _currentdestination = userData.destination;
             _currentboarding = userData.boarding;
 
-            return  Container(
+            return Container(
               padding: EdgeInsets.symmetric(vertical: 25.0),
               width: double.infinity,
               child: RaisedButton(
                 elevation: 5.0,
-                onPressed: (){
-                  if(boardingPoint != 'Boarding Point'){
+                onPressed: () {
+                  if (boardingPoint != 'Boarding Point') {
                     FlutterNfcReader.read().then((response) {
-                      Toast.show("Working!!!", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+                      Toast.show("Working!!!", context,
+                          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                       print(response.content);
                     });
                     FlutterNfcReader.onTagDiscovered().listen((data) {
@@ -119,91 +117,97 @@ class _HomeButtonState extends State<HomeButton> {
                       print(response.status.toString());
                     });
                     destination = rnd.nextInt(5).toString();
-                    while(double.parse(destination)==0){
+                    while (double.parse(destination) == 0) {
                       destination = rnd.nextInt(5).toString();
                     }
-                    destinationPoint='Station '+destination;
+                    destinationPoint = 'Station ' + destination;
                   }
                   setState(() {});
                 },
-                onLongPress: () async{
-                  if(destinationPoint!='Destination Point') {
+                onLongPress: () async {
+                  if (destinationPoint != 'Destination Point') {
                     boardingPoint = 'Boarding Point';
                     destinationPoint = 'Destination Point';
                     setState(() {
-
-                      if(boarding!=destination){
-                        if(double.parse(boarding)>double.parse(destination)){
-                          fare = ((double.parse(boarding)-double.parse(destination))*10).toString();
+                      if (boarding != destination) {
+                        if (double.parse(boarding) >
+                            double.parse(destination)) {
+                          fare = ((double.parse(boarding) -
+                                      double.parse(destination)) *
+                                  10)
+                              .toString();
+                        } else {
+                          fare = ((double.parse(destination) -
+                                      double.parse(boarding)) *
+                                  10)
+                              .toString();
                         }
-                        else{
-                          fare = ((double.parse(destination)-double.parse(boarding))*10).toString();
-                        }
-                        if(_currentbalance > double.parse(fare) && _currentbalance >0){
-                          _currentbalance = (_currentbalance-double.parse(fare));
+                        if (_currentbalance > double.parse(fare) &&
+                            _currentbalance > 0) {
+                          _currentbalance =
+                              (_currentbalance - double.parse(fare));
                           DatabaseService(uid: user.uid).updateUserData(
                               _currentName ?? snapshot.data.name,
                               _currentbalance ?? snapshot.data.balance,
                               _currentboarding ?? snapshot.data.boarding,
-                              _currentdestination ?? snapshot.data.destination
-                          );
+                              _currentdestination ?? snapshot.data.destination);
                           showDialog(
                               context: context,
-                              builder: (context)=> AlertDialog(
-                                title: Text('Fare (Station $boarding -> Station $destination) : Rs.$fare'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text(
-                                      "Ok",
-                                      style: TextStyle(
-                                        fontSize: 18,
+                              builder: (context) => AlertDialog(
+                                    title: Text(
+                                        'Fare (Station $boarding -> Station $destination) : Rs.$fare'),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text(
+                                          "Ok",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
                                       ),
-                                    ),
-                                    onPressed: ()=>Navigator.pop(context,true),
-                                  ),
-                                ],
-                              )
-                          );
-                        }
-                        else{
+                                    ],
+                                  ));
+                        } else {
                           showDialog(
                               context: context,
-                              builder: (context)=> AlertDialog(
-                                title: Text('Transaction Failed...Insufficient funds'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text(
-                                      "Ok",
-                                      style: TextStyle(
-                                        fontSize: 18,
+                              builder: (context) => AlertDialog(
+                                    title: Text(
+                                        'Transaction Failed...Insufficient funds'),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text(
+                                          "Ok",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        onPressed: () =>
+                                            Navigator.pop(context, true),
                                       ),
-                                    ),
-                                    onPressed: ()=>Navigator.pop(context,true),
-                                  ),
-                                ],
-                              )
-                          );
+                                    ],
+                                  ));
                         }
-
-                      }
-                      else{
+                      } else {
                         showDialog(
                             context: context,
-                            builder: (context)=> AlertDialog(
-                              title: Text('Fare cant be calculated for same stations'),
-                              actions: <Widget>[
-                                FlatButton(
-                                  child: Text(
-                                    "Ok",
-                                    style: TextStyle(
-                                      fontSize: 18,
+                            builder: (context) => AlertDialog(
+                                  title: Text(
+                                      'Fare cant be calculated for same stations'),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text(
+                                        "Ok",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      onPressed: () =>
+                                          Navigator.pop(context, true),
                                     ),
-                                  ),
-                                  onPressed: ()=>Navigator.pop(context,true),
-                                ),
-                              ],
-                            )
-                        );
+                                  ],
+                                ));
                       }
                     });
                   }
@@ -217,8 +221,10 @@ class _HomeButtonState extends State<HomeButton> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Icon(Icons.location_on,
-                      color: Colors.green,),
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.green,
+                    ),
                     Text(
                       destinationPoint,
                       style: TextStyle(
@@ -233,15 +239,11 @@ class _HomeButtonState extends State<HomeButton> {
                 ),
               ),
             );
-
-          }
-          else{
+          } else {
             return Loading();
           }
-        }
-    );
+        });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -270,7 +272,7 @@ class _HomeButtonState extends State<HomeButton> {
                 ),
               ),
               Container(
-                height: double.infinity,
+                // height: double.infinity,
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
@@ -308,7 +310,6 @@ class _HomeButtonState extends State<HomeButton> {
                           fontFamily: 'OpenSans',
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-
                         ),
                         textAlign: TextAlign.justify,
                       ),
