@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               buttonColor: Color(0xff454545),
             )
         ),
-//      debugShowCheckedModeBanner: false, //remove comment to remove debug tag
+        debugShowCheckedModeBanner: false, //remove comment to remove debug tag
         home: Wrapper(),
       ),
     );
