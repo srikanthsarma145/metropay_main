@@ -9,15 +9,15 @@ class MapButton extends StatefulWidget {
 }
 
 class _MapButtonState extends State<MapButton> {
-
-
   void _showFarePanel() {
-    showModalBottomSheet(context: context, builder: (context) {
-      return Container(
-        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-        child: CalculateFareButton(),
-      );
-    });
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+            child: CalculateFareButton(),
+          );
+        });
   }
 
   Widget _metroMap() {
@@ -38,16 +38,19 @@ class _MapButtonState extends State<MapButton> {
               ),
             ),
             SizedBox(height: 10.0),
-            Container(height: 4, color: Color(0xFF61A4F1),
-              margin: const EdgeInsets.only(left: 0.0, right: 190.0),),
+            Container(
+              height: 4,
+              color: Color(0xFF61A4F1),
+              margin: const EdgeInsets.only(left: 0.0, right: 190.0),
+            ),
             SizedBox(height: 20.0),
             Container(
               height: 240.0,
               width: double.infinity,
               child: PhotoView(
                 imageProvider: AssetImage('assets/hydmetro/HMRRouteMap-1.png'),
-                minScale: PhotoViewComputedScale.contained*1,
-                maxScale: PhotoViewComputedScale.contained*1,
+                minScale: PhotoViewComputedScale.contained * 1,
+                maxScale: PhotoViewComputedScale.contained * 1,
               ),
             ),
           ],
@@ -81,7 +84,6 @@ class _MapButtonState extends State<MapButton> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

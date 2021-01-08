@@ -9,9 +9,7 @@ class ForgetScreen extends StatefulWidget {
 }
 
 class _ForgetScreenState extends State<ForgetScreen> {
-
   String emailId;
-
 
   Widget _buildemailIdTF() {
     return Column(
@@ -28,7 +26,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged: (text){
+            onChanged: (text) {
               emailId = text;
             },
             style: TextStyle(
@@ -59,7 +57,8 @@ class _ForgetScreenState extends State<ForgetScreen> {
         elevation: 4.0,
         onPressed: () {
           Navigator.pop(context);
-          Toast.show("email sent", context, duration: Toast.LENGTH_LONG, gravity:  Toast.BOTTOM);
+          Toast.show("email sent", context,
+              duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -136,7 +135,6 @@ class _ForgetScreenState extends State<ForgetScreen> {
                           fontFamily: 'OpenSans',
                           fontSize: 10.0,
                           fontWeight: FontWeight.bold,
-
                         ),
                         textAlign: TextAlign.justify,
                       ),
